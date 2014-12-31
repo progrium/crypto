@@ -74,6 +74,9 @@ type Channel interface {
 	// safely be read and written from a different goroutine than
 	// Read and Write respectively.
 	Stderr() io.ReadWriter
+
+	LocalID() uint32
+	RemoteID() uint32
 }
 
 // Request is a request sent outside of the normal stream of
@@ -628,4 +631,12 @@ func (ch *channel) ChannelType() string {
 
 func (ch *channel) ExtraData() []byte {
 	return ch.extraData
+}
+
+func (ch *channel) LocalID() uint32 {
+	return ch.localId
+}
+
+func (ch *channel) RemoteID() uint32 {
+	return ch.remoteId
 }
